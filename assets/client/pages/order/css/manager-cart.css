@@ -1,0 +1,25 @@
+.cart_product_price{
+    border:none;
+    outline:none;
+    padding: 2%;
+    font-size: 14px;
+    color: #8a8a8a;
+}
+
+.cart_product_total{
+    border:none;
+    outline:none;
+    padding: 2%;
+    font-size: 16px;
+    color: #4d4d4d;
+    width: 120px;
+}
+
+.cart_total{
+    border:none;
+    outline:none;
+    padding: 0% 4%;
+    font-size: 18px;
+    color: #4d4d4d;
+    width: 150px;
+}
