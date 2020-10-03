@@ -49,10 +49,12 @@
         <div class="sidebar-collapse">
             <ul class="nav metismenu" id="side-menu">
                 <li class="nav-header">
-                    <div class="dropdown profile-element">
-                        <img alt="image" class="rounded-circle" src="<?=base_url();?>assets/client/template/img/profile_small.jpg"/>
+                    <div class="dropdown profile-element text-center">
+                        <img alt="image" class="rounded-circle" src="<?=$this->session->LOGIN['avatar']?>"  style="width:80px;"/>
+                        <span class="block m-t-xs font-bold" style="color:#FFF"><?=$this->session->LOGIN['first_name']?> <?=$this->session->LOGIN['last_name']?></span>
+                        <span class="block m-t-xs text-muted " style="color:#FFF"><?=$this->session->LOGIN['email']?></span>
+                        <!--
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <span class="block m-t-xs font-bold">David Williams</span>
                             <span class="text-muted text-xs block">Art Director <b class="caret"></b></span>
                         </a>
                         <ul class="dropdown-menu animated fadeInRight m-t-xs">
@@ -60,41 +62,22 @@
                             <li class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="<?=base_url();?>logout">Sair</a></li>
                         </ul>
+                        -->
                     </div>
                     <div class="logo-element">
-                        IN+
+                        DT
                     </div>
                 </li>
                 <li class="<?=$active_menu == 'dashboard' ? 'active' : ''?>">
                     <a href="<?=base_url()?>dashboard"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboard</span></a>
                 </li>
                 
-                <li class="<?=$active_menu == 'order' ? 'active' : ''?>">
-                    <a href="<?=base_url()?>order"><i class="fa fa-files-o"></i> <span class="nav-label">Vendas</span></a>
+                <li class="<?=$active_menu == 'trading' ? 'active' : ''?>">
+                    <a href="<?=base_url()?>trading"><i class="fa fa-files-o"></i> <span class="nav-label">Operações</span></a>
                 </li>
 
-                <li class="<?=$active_menu == 'product' ? 'active' : ''?>">
-                    <a href="<?=base_url()?>product"><i class="fa fa-diamond"></i> <span class="nav-label">Produtos</span></a>
-                </li>
-
-                <li class="<?=$active_menu == 'client' ? 'active' : ''?>">
-                    <a href="<?=base_url()?>client"><i class="fa fa-address-book-o"></i> <span class="nav-label">Clientes</span></a>
-                </li>
-
-                <li class="<?=$active_menu == 'revenue' ? 'active' : ''?>">
-                    <a href="<?=base_url()?>revenue">R<i class="fa fa-usd"></i> <span class="nav-label">Receitas</span></a>
-                </li>
-
-                <li class="<?=$active_menu == 'expense' ? 'active' : ''?>">
-                    <a href="<?=base_url()?>expense"><i class="fa fa-flag"></i> <span class="nav-label">Despesas</span></a>
-                </li>
-
-                <li class="<?=$active_menu == 'report' ? 'active' : ''?>">
-                    <a href="<?=base_url()?>report"><i class="fa fa-line-chart"></i> <span class="nav-label">Relatórios</span></a>
-                </li>
-
-                <li class="<?=$active_menu == 'users' ? 'active' : ''?>">
-                    <a href="<?=base_url()?>users"><i class="fa fa-users"></i> <span class="nav-label">Usuários</span></a>
+                <li class="<?=$active_menu == 'trading-plan' ? 'active' : ''?>">
+                    <a href="<?=base_url()?>trading-plan"><i class="fa fa-files-o"></i> <span class="nav-label">Plano de Operações</span></a>
                 </li>
 
                 <li class="<?=$active_menu == 'settings' ? 'active' : ''?>">

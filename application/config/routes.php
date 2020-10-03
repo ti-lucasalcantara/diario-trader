@@ -53,89 +53,32 @@ $route['default_controller']    = 'home';
 $route['404_override']          = 'error404';
 $route['translate_uri_dashes']  = FALSE;
 
+
+$route['login'] = 'sessions/index';
+
+
 /**
 *------------------------- Client Routes
 */
 
 // Dashboard
-$route['dashboard']     = 'client/dashboard';
-
-// Order
-$route['order']         = 'client/order';
-$route['order/create']  = 'client/order/create';
-$route['order/save']    = 'client/order/save';
-
-// Product
-$route['product']               = 'client/product';
-$route['product/page/(:num)']   = 'client/product/index/$1';
-$route['product/show']          = 'client/product/show';
-$route['product/show/(:any)']   = 'client/product/show/$1';
-$route['product/create']        = 'client/product/create';
-$route['product/insert']        = 'client/product/insert';
-$route['product/insert-image']  = 'client/product/insertImage';
-$route['product/edit/(:any)']   = 'client/product/edit/$1';
-$route['product/update']        = 'client/product/update';
-
-// Client
-$route['client']              = 'client/client';
-$route['client/show']         = 'client/client/show';
-$route['client/show/(:any)']  = 'client/client/show/$1';
-$route['client/show-params']  = 'client/client/showByParams';
-$route['client/create']       = 'client/client/create';
-$route['client/insert']       = 'client/client/insert';
-$route['client/edit/(:any)']  = 'client/client/edit/$1';
-$route['client/update']       = 'client/client/update';
-$route['client/delete']       = 'client/client/delete';
-$route['client/restore']      = 'client/client/restore';
+$route['dashboard'] = 'client/dashboard';
 
 
-// Report
-$route['report']    = 'client/report';
-
-// Settings
-$route['settings']  = 'client/settings';
-
-// Revenue
-$route['revenue']   = 'client/revenue';
-
-// Expense
-$route['expense']   = 'client/expense';
-
-// Users
-$route['users']     = 'client/users';
-
-// Profile
-$route['profile']   = 'client/profile';
-
-
-
-
-// Measurements
-$route['measurements']              = 'client/measurements';
-$route['measurements/show']         = 'client/measurements/show';
-$route['measurements/show/(:any)']  = 'client/measurements/show/$1';
-$route['measurements/insert']       = 'client/measurements/insert';
-$route['measurements/update']       = 'client/measurements/update';
-$route['measurements/delete']       = 'client/measurements/delete';
-$route['measurements/restore']      = 'client/measurements/restore';
-
-// Product Categories
-$route['product-categories']              = 'client/productCategories/show';
-$route['product-categories/show']         = 'client/productCategories/show';
-$route['product-categories/show/(:any)']  = 'client/productCategories/show/$1';
-$route['product-categories/insert']       = 'client/productCategories/insert';
-$route['product-categories/update']       = 'client/productCategories/update';
-$route['product-categories/delete']       = 'client/productCategories/delete';
-$route['product-categories/restore']      = 'client/productCategories/restore';
-
-// Product Images
-$route['product-images']              = 'client/productImages/show';
-$route['product-images/show']         = 'client/productImages/show';
-$route['product-images/show/(:any)']  = 'client/productImages/show/$1';
-$route['product-images/insert']       = 'client/productImages/insert';
-$route['product-images/update']       = 'client/productImages/update';
-$route['product-images/delete']       = 'client/productImages/delete';
-$route['product-images/restore']      = 'client/productImages/restore';
+// Trading
+$route['trading']              = 'client/trading/index';
+$route['trading/date']         = 'client/trading/index';
+$route['trading/date/(:any)']  = 'client/trading/index/$1';
+$route['trading/show']         = 'client/trading/show';
+$route['trading/show/(:any)']  = 'client/trading/show/$1';
+$route['trading/show-params']  = 'client/trading/showByParams';
+$route['trading/create']       = 'client/trading/create';
+$route['trading/create/(:any)']= 'client/trading/create/$1';
+$route['trading/insert']       = 'client/trading/insert';
+$route['trading/edit/(:any)']  = 'client/trading/edit/$1';
+$route['trading/update']       = 'client/trading/update';
+$route['trading/delete']       = 'client/trading/delete';
+$route['trading/restore']      = 'client/trading/restore';
 
 /**
 *------------------------- Client Routes //
@@ -144,5 +87,12 @@ $route['product-images/restore']      = 'client/productImages/restore';
 
 
 /**
- * Admin Routes
- */
+*------------------------- Admin Routes
+*/
+
+// Dashboard
+$route['admin/dashboard']     = 'admin/dashboard';
+
+/**
+*------------------------- Admin Routes //
+*/

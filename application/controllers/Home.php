@@ -8,7 +8,7 @@ class Home extends CI_Controller {
 		$data = array();
 		$data['active_menu'] = "home";
 
-		$this->load->view('fixed/header', $data);
-		$this->load->view('fixed/footer');
+		$this->load->view('_fixed/header', $data);
+		$this->load->view('_fixed/footer');
 	}
 }

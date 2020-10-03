@@ -88,4 +88,4 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 /*
 Constants of application
 */
-defined('APPLICATION_NAME')    OR define('APPLICATION_NAME', 'Project'); 
+defined('APPLICATION_NAME')    OR define('APPLICATION_NAME', 'Diário Trader'); 
