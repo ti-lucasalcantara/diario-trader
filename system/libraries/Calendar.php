@@ -354,11 +354,13 @@ class CI_Calendar {
 	{
 		if ($this->month_type === 'short')
 		{
-			$month_names = array('01' => 'cal_jan', '02' => 'cal_feb', '03' => 'cal_mar', '04' => 'cal_apr', '05' => 'cal_may', '06' => 'cal_jun', '07' => 'cal_jul', '08' => 'cal_aug', '09' => 'cal_sep', '10' => 'cal_oct', '11' => 'cal_nov', '12' => 'cal_dec');
+			//$month_names = array('01' => 'cal_jan', '02' => 'cal_feb', '03' => 'cal_mar', '04' => 'cal_apr', '05' => 'cal_may', '06' => 'cal_jun', '07' => 'cal_jul', '08' => 'cal_aug', '09' => 'cal_sep', '10' => 'cal_oct', '11' => 'cal_nov', '12' => 'cal_dec');
+			$month_names = array('01' => 'cal_jan', '02' => 'cal_fev', '03' => 'cal_mar', '04' => 'cal_abr', '05' => 'cal_mai', '06' => 'cal_jun', '07' => 'cal_jul', '08' => 'cal_ago', '09' => 'cal_set', '10' => 'cal_out', '11' => 'cal_nov', '12' => 'cal_dez');
 		}
 		else
 		{
-			$month_names = array('01' => 'cal_january', '02' => 'cal_february', '03' => 'cal_march', '04' => 'cal_april', '05' => 'cal_mayl', '06' => 'cal_june', '07' => 'cal_july', '08' => 'cal_august', '09' => 'cal_september', '10' => 'cal_october', '11' => 'cal_november', '12' => 'cal_december');
+			//$month_names = array('01' => 'cal_january', '02' => 'cal_february', '03' => 'cal_march', '04' => 'cal_april', '05' => 'cal_mayl', '06' => 'cal_june', '07' => 'cal_july', '08' => 'cal_august', '09' => 'cal_september', '10' => 'cal_october', '11' => 'cal_november', '12' => 'cal_december');
+			$month_names = array('01' => 'cal_janeiro', '02' => 'cal_fevereiro', '03' => 'cal_março', '04' => 'cal_abril', '05' => 'cal_maio', '06' => 'cal_junho', '07' => 'cal_julho', '08' => 'cal_agosto', '09' => 'cal_setembro', '10' => 'cal_outubro', '11' => 'cal_novembro', '12' => 'cal_dezembro');
 		}
 
 		return ($this->CI->lang->line($month_names[$month]) === FALSE)
@@ -386,15 +388,18 @@ class CI_Calendar {
 
 		if ($this->day_type === 'long')
 		{
-			$day_names = array('sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday');
+			//$day_names = array('sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday');
+			$day_names = array('Domingo', 'Segunda-Feira', 'Terça-Feira', 'Quarta-Feira', 'Quinta-Feira', 'Sexta-Feira', 'Sábado');
 		}
 		elseif ($this->day_type === 'short')
 		{
-			$day_names = array('sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat');
+			//$day_names = array('sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat');
+			$day_names = array('Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb');
 		}
 		else
 		{
-			$day_names = array('su', 'mo', 'tu', 'we', 'th', 'fr', 'sa');
+			//$day_names = array('su', 'mo', 'tu', 'we', 'th', 'fr', 'sa');
+			$day_names = array('Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb');
 		}
 
 		$days = array();
