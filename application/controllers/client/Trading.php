@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Trading extends CI_Controller {
+class Trading extends MY_Controller {
 
 	public function __construct(){
 
@@ -13,7 +13,8 @@ class Trading extends CI_Controller {
 		// check permission
 
 		// load database
-		$this->load->model('client/tradings_model', 'tradings');
+		$this->load->model('client/Tradings_in_model', 'tradings_in');
+		$this->load->model('client/Tradings_out_model', 'tradings_out');
 	}
 
 	public function index($date = null)
@@ -32,19 +33,19 @@ class Trading extends CI_Controller {
 		$day_of_week   = strftime('%A', strtotime($date));
 		
 		switch ($day_of_week) {
-			case 'Sunday': 		$day_of_week = "Domingo"; 		break;
 			case 'Monday': 		$day_of_week = "Segunda-Feira"; break;
 			case 'Tuesday': 	$day_of_week = "Terça-Feira"; 	break;
 			case 'Wednesday': 	$day_of_week = "Quarta-Feira"; 	break;
 			case 'Thursday': 	$day_of_week = "Quinta-Feira"; 	break;
 			case 'Friday': 		$day_of_week = "Sexta-Feira"; 	break;
 			case 'Saturday': 	$day_of_week = "Sábado"; 		break;
+			case 'Sunday': 		$day_of_week = "Domingo"; 		break;
 			default: break;
 		}
 
 		$explode 	= explode('/', $selected_date);
 		$where_date = $explode[2]."-".$explode[1]."-".$explode[0];
-		$tradings 	= $this->tradings->show( ['date_in' => $where_date] );
+		$tradings 	= $this->tradings_in->show( ['date_in' => $where_date] );
 
 		
 		$data = array();
@@ -122,64 +123,27 @@ class Trading extends CI_Controller {
 	{		
 		if( ! $this->input->post() ){
 			
-			$response['response_type'] 		= 'error';
-			$response['response_title'] 	= 'Error';
-			$response['response_message'] 	= 'Falha na requisição.';
+			$response['toast_type'] 	= 'error';
+			$response['toast_title'] 	= 'Error';
+			$response['toast_message'] 	= 'Falha na requisição.';
 
-			$this->output
-				->set_status_header(401)
-				->set_content_type('application/json', 'utf-8')
-				->set_output(json_encode($response));
-			return false;
+			$this->session->set_flashdata($response);
+			redirect("trading/create");
 
 		}else{
 			
-			$this->load->library('form_validation');
-
 			$rules = array(
 				array(
-					'field' => 'date_in',
-					'label' => 'Data',
-					'rules' => 'required',
-					'errors' => array(
-						'required' => 'campo obrigatório',
-					),
-				),
-				array(
-					'field' => 'hour_in',
-					'label' => 'Hora Entrada',
-					'rules' => 'required',
-					'errors' => array(
-						'required' => 'campo obrigatório',
-					),
-				),
-				array(
-					'field' => 'hour_out',
-					'label' => 'Hora Saída',
-					'rules' => 'required',
-					'errors' => array(
-						'required' => 'campo obrigatório',
-					),
-				),
-				array(
-					'field' => 'price_in',
-					'label' => 'Preço Entrada',
+					'field' => 'ticker',
+					'label' => 'Ativo',
 					'rules' => 'required',
 					'errors' => array(
 						'required' => 'campo obrigatório'
 					),
 				),
 				array(
-					'field' => 'price_out',
-					'label' => 'Preço Saída',
-					'rules' => 'required',
-					'errors' => array(
-						'required' => 'campo obrigatório'
-					),
-				),
-				array(
-					'field' => 'price_out',
-					'label' => 'Preço Saída',
+					'field' => 'price_of_point',
+					'label' => 'Preço por pontos',
 					'rules' => 'required',
 					'errors' => array(
 						'required' => 'campo obrigatório'
@@ -188,14 +152,6 @@ class Trading extends CI_Controller {
 				array(
 					'field' => 'command',
 					'label' => 'Operação',
-					'rules' => 'required',
-					'errors' => array(
-						'required' => 'campo obrigatório'
-					),
-				),
-				array(
-					'field' => 'ticker',
-					'label' => 'Ativo',
 					'rules' => 'required',
 					'errors' => array(
 						'required' => 'campo obrigatório'
@@ -217,31 +173,105 @@ class Trading extends CI_Controller {
 						'required' => 'campo obrigatório'
 					),
 				),
+				array(
+					'field' => 'date_in',
+					'label' => 'Data',
+					'rules' => 'required',
+					'errors' => array(
+						'required' => 'campo obrigatório',
+					),
+				),
+				array(
+					'field' => 'hour_in',
+					'label' => 'Hora Entrada',
+					'rules' => 'required',
+					'errors' => array(
+						'required' => 'campo obrigatório',
+					),
+				),
+				array(
+					'field' => 'price_in',
+					'label' => 'Preço Entrada',
+					'rules' => 'required',
+					'errors' => array(
+						'required' => 'campo obrigatório'
+					),
+				),
+
 			);
 		
+			/* 
+			if ($this->input->post('quantity_line_out') > 0) {
+                $this->form_validation->set_rules('nome', 'Nome', 'required',  array('required' => 'Campo obrigatório'));
+            }  
+			*/
+
 			$this->form_validation->set_rules($rules);
 		
 			if ($this->form_validation->run() == FALSE)
 			{
-				$this->output
-					->set_status_header(200)
-					->set_content_type('application/json', 'utf-8')
-					->set_output(json_encode( array_merge( 
-												array('response_type'	=> 'error', 
-													  'response_title' 	=> 'Falha ao enviar dados', 
-													  'response_message'=>'Verifique os dados do formulário',
-													), 
-												$this->form_validation->error_array()) 
-											));
-				return false;
+				$this->create();
 			}
 			else
 			{
 
+				// insert trading in
+				$trading_in['users_id'] 		= $this->session->LOGIN['USER_ID'];
+				$trading_in['ticker'] 			= $this->input->post('ticker');
+				$trading_in['price_of_point'] 	= valueToDecimal($this->input->post('price_of_point'));
+				$trading_in['command'] 			= $this->input->post('command');
+				$trading_in['setup'] 			= $this->input->post('setup');
+				$trading_in['number_of_papers'] = $this->input->post('number_of_papers');
+				$trading_in['date_in'] 			= datePTBRtoENUS($this->input->post('date_in'));
+				$trading_in['hour_in'] 			= $this->input->post('hour_in');
+				$trading_in['price_in'] 		= valueToDecimal($this->input->post('price_in'));
+				$trading_in['description'] 		= $this->input->post('description');
 
-				$aux_date_in  = explode('/',$this->input->post('date_in'));
-				$date_in	  = $aux_date_in[2]."-".$aux_date_in[1]."-".$aux_date_in[0];
+				$trading_in_id = $this->tradings_in->insert($trading_in);
 
+				if ( ! $trading_in_id ){
+					$response['toast_type'] 	= 'error';
+					$response['toast_title'] 	= 'Error';
+					$response['toast_message'] 	= 'Falha ao criar Trading [in]';
+		
+					$this->session->set_flashdata($response);
+					redirect("trading/create/");
+				}
+
+				if ( $this->input->post('quantity_line_out')  > 0 ){
+					// insert trading out
+					for ($i=0; $i < $this->input->post('quantity_line_out'); $i++) { 
+						$trading_out = array();
+						$trading_out['users_id'] 			= $this->session->LOGIN['USER_ID'];
+						$trading_out['trading_in_id'] 	 	= $trading_in_id;
+						$trading_out['date_out'] 			= datePTBRtoENUS($this->input->post('date_out')[$i]);
+						$trading_out['hour_out'] 			= $this->input->post('hour_out')[$i];
+						$trading_out['price_out'] 			= valueToDecimal($this->input->post('price_out')[$i]);
+						$trading_out['number_of_papers'] 	= $this->input->post('number_of_papers_out')[$i];
+
+						$insert_trading_out = $this->tradings_out->insert($trading_out);
+
+						if ( ! $insert_trading_out ){
+							$response['toast_type'] 	= 'error';
+							$response['toast_title'] 	= 'Error';
+							$response['toast_message'] 	= 'Falha ao criar Trading [out] -> '.$i;
+				
+							$this->session->set_flashdata($response);
+							redirect("trading/create/");
+						}
+
+					}
+
+				}
+
+				$response['toast_type'] 	= 'success';
+				$response['toast_title'] 	= 'Tudo certo !';
+				$response['toast_message'] 	= 'Dados armazenados com sucesso!';
+	
+				$this->session->set_flashdata($response);
+				redirect("trading/");
+
+				/* 
 				$aux_date_out = ( $this->input->post('date_out') ) ? explode('/',$this->input->post('date_out')) : $aux_date_in;
 				$date_out	  = $aux_date_out[2]."-".$aux_date_out[1]."-".$aux_date_out[0];
 
@@ -412,6 +442,9 @@ class Trading extends CI_Controller {
 					->set_content_type('application/json', 'utf-8')
 					->set_output(json_encode($response));
 				return true;
+
+				*/
+
 			}
 		}
 	}

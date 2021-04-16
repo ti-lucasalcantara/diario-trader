@@ -11,9 +11,9 @@
 
     <script>
         $(function(){
-            let response_type       = '<?=$this->session->flashdata('response_type')?>';
-            let response_message    = '<?=$this->session->flashdata('response_message')?>';
-            let response_title      = '<?=$this->session->flashdata('response_title')?>';
+            let response_type       = '<?=$this->session->flashdata('toast_type')?>';
+            let response_message    = '<?=$this->session->flashdata('toast_message')?>';
+            let response_title      = '<?=$this->session->flashdata('toast_title')?>';
 
             toastr.options = {
                 closeButton: true,

@@ -82,6 +82,7 @@
                     </div>
                     <?php
                     if(sizeof($tradings) > 0){
+                        var_dump($tradings);
                     ?>
                     <div class="ibox-content">
                         <div class="container">

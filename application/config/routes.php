@@ -53,8 +53,15 @@ $route['default_controller']    = 'home';
 $route['404_override']          = 'error404';
 $route['translate_uri_dashes']  = FALSE;
 
+$route['register']           = 'user/register';
+$route['recovery-password']  = 'user/recoveryPassword';
 
-$route['login'] = 'sessions/index';
+$route['user/active/(:any)/(:any)']          = 'user/activeUser/$1/$2';
+$route['user/reset-password/(:any)/(:any)']  = 'user/resetPassword/$1/$2';
+
+$route['login']     = 'sessions/index';
+$route['logout']    = 'sessions/logout';
+
 
 
 /**

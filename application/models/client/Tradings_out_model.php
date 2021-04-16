@@ -1,10 +1,10 @@
 <?php
 
-class Tradings_model extends CI_Model {
+class Tradings_out_model extends CI_Model {
 
-    private $table          = "tradings";
+    private $table          = "tradings_out";
     private $id             = "id";
-    private $main_column    = "date_in";
+    private $main_column    = "date_out";
     private $updated_at     = true;
     private $deleted_at     = true;
     
@@ -16,9 +16,11 @@ class Tradings_model extends CI_Model {
     
     public function show($where = null, $order = null)
     {   
+        
         $this->db->select('*');
         $this->db->from($this->table);
-    
+        $this->db->where('users_id', $_SESSION['LOGIN']['USER_ID']);
+
         if($where && !is_array($where) ){
             $this->db->where($this->id, $where);
         }

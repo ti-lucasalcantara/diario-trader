@@ -1,6 +1,10 @@
 $("#form").attr('autocomplete','off');
 
+$("#form").submit(function(){
+    $("#btn_send").prop('disabled',true).html("<i class='fa fa-spinner fa-spin'></i> Aguarde...");
+});
 
+/* 
 $("#form").submit(function(e){
     e.preventDefault();
 
@@ -75,4 +79,5 @@ $("#form").submit(function(e){
         $("#btn_send").prop('disabled',false).html("Cadastrar Cliente");
     });
 
-}); 
+});  
+*/

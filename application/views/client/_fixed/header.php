@@ -50,9 +50,10 @@
             <ul class="nav metismenu" id="side-menu">
                 <li class="nav-header">
                     <div class="dropdown profile-element text-center">
-                        <img alt="image" class="rounded-circle" src="<?=$this->session->LOGIN['avatar']?>"  style="width:80px;"/>
-                        <span class="block m-t-xs font-bold" style="color:#FFF"><?=$this->session->LOGIN['first_name']?> <?=$this->session->LOGIN['last_name']?></span>
-                        <span class="block m-t-xs text-muted " style="color:#FFF"><?=$this->session->LOGIN['email']?></span>
+                        <img alt="image" class="rounded-circle" src="<?=$this->session->LOGIN['AVATAR']?>"  style="width:80px;"/>
+                        <span class="block m-t-xs font-bold" style="color:#FFF"><?=$this->session->LOGIN['FIRST_NAME']?> <?=$this->session->LOGIN['LAST_NAME']?></span>
+                        <span class="block m-t-xs text-muted " style="color:#FFF"><?=$this->session->LOGIN['EMAIL']?> </span>
+                        <span class="block m-t-xs text-muted " style="color:#FFF"><a href="<?=base_url()?>logout"><i class="fa fa-sign-out"></i> Sair</a></span>
                         <!--
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="text-muted text-xs block">Art Director <b class="caret"></b></span>
@@ -76,6 +77,10 @@
                     <a href="<?=base_url()?>trading"><i class="fa fa-files-o"></i> <span class="nav-label">Operações</span></a>
                 </li>
 
+                <li class="<?=$active_menu == 'reports' ? 'active' : ''?>">
+                    <a href="<?=base_url()?>reports"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">Relatórios</span></a>
+                </li>
+                <!--
                 <li class="<?=$active_menu == 'trading-plan' ? 'active' : ''?>">
                     <a href="<?=base_url()?>trading-plan"><i class="fa fa-files-o"></i> <span class="nav-label">Plano de Operações</span></a>
                 </li>
@@ -87,6 +92,7 @@
                 <li class="landing_link my-5">
                     <a target="_blank" href="landing.html"><i class="fa fa-star"></i> <span class="nav-label">Planos</span> <span class="label label-warning float-right">PRO</span></a>
                 </li>
+                -->
 
             </ul>
 
@@ -99,8 +105,9 @@
         <div class="navbar-header"><a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i></a></div>
             <ul class="nav navbar-top-links navbar-right">
                 <li>
-                    <span class="m-r-sm text-muted welcome-message">Bem-vindo(a), Usuário Logado!</span>
+                    <span class="m-r-sm text-muted welcome-message">Bem-vindo(a), <?=$this->session->LOGIN['FIRST_NAME']?>!</span>
                 </li>
+                <!--
                 <li class="dropdown">
                     <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
                         <i class="fa fa-envelope"></i>  <span class="label label-warning">16</span>
@@ -128,6 +135,8 @@
                         </li>
                     </ul>
                 </li>
+                -->
+                <!--
                 <li class="dropdown">
                     <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
                         <i class="fa fa-bell"></i>  <span class="label label-primary">8</span>
@@ -152,10 +161,10 @@
                         </li>
                     </ul>
                 </li>
-
+                -->
 
                 <li>
-                    <a href="login.html">
+                    <a href="<?=base_url()?>logout">
                         <i class="fa fa-sign-out"></i> Sair
                     </a>
                 </li>
